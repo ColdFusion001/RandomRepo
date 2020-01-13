@@ -16,5 +16,5 @@ local Whitelist = {
     "Username",
     "Username",
     "Username",
-    "Username",
+    "Username"
 }
