@@ -1,5 +1,6 @@
 local player = game.Players.LocalPlayer
 local fail = true
+local LP = game.Players.LocalPlayer.Name
 
 loadstring(game:HttpGet("https://pastebin.com/raw/KqBXVKek", true))()
 
@@ -107,7 +108,8 @@ local FwY = Instance.new("TextButton")
 local FwG = Instance.new("TextButton")
 local FwB = Instance.new("TextButton")
 local House = Instance.new("TextButton")
-
+local Rainbow = Instance.new("TextButton")
+local RainbowB = Instance.new("BoolValue", Rainbow)
 --Properties:
 
 NicksGui.Name = "NicksGui"
@@ -412,6 +414,16 @@ FwB.Text = "Spawn blue firework"
 FwB.TextColor3 = Color3.fromRGB(0, 0, 0)
 FwB.TextSize = 12.000
 
+Rainbow.Name = "Rainbow"
+Rainbow.Parent = ScrollingFrame2
+Rainbow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Rainbow.Position = UDim2.new(0, 0, 0.749064536, 0)
+Rainbow.Size = UDim2.new(0, 122, 0, 50)
+Rainbow.Font = Enum.Font.SourceSans
+Rainbow.Text = "Taste The Rainbow"
+Rainbow.TextColor3 = Color3.fromRGB(0, 0, 0)
+Rainbow.TextSize = 14.000
+
 TopFrame.Active = true
 TopFrame.Draggable = true
 
@@ -464,7 +476,7 @@ game:GetService("Workspace").CommunicationRelays.Character.EquipAccessory:Invoke
 game:GetService("Workspace").CommunicationRelays.Character.EquipAccessory:InvokeServer(game.Players.LocalPlayer.Character, 568920951, "Hat3")
 game:GetService("Workspace").CommunicationRelays.Character.EquipAccessory:InvokeServer(game.Players.LocalPlayer.Character, 1015041556, "Shirt1")
 game:GetService("Workspace").CommunicationRelays.Character.EquipAccessory:InvokeServer(game.Players.LocalPlayer.Character, 3724324544, "Pants1")
-local Remote = game.Workspace.CommunicationRelays.Character['NamePlateUpdate']:FireServer("CharacterName", "💀   Soul Taker   💀")
+local Remote = game.Workspace.CommunicationRelays.Character['NamePlateUpdate']:FireServer("CharacterName", "Soul Taker")
 end)
 
 Noob.MouseButton1Click:Connect(function()
@@ -604,20 +616,47 @@ if TrailB.Value then
 end)
 
 FwY.MouseButton1Click:Connect(function()
+local pos = workspace[LP].Head.Position
+local A = CFrame.new (pos)
 
+
+local A_1 = "PlacedFirework_Yellow"
+local A_2 = A
+local A_3 = "Yellow Firework"
+local A_4 = game:GetService("Workspace").Ground
+local Event = game:GetService("Workspace").CommunicationRelays.House.PlaceLeisure
+Event:InvokeServer(A_1, A_2, A_3, A_4)
 end)
 
 FwG.MouseButton1Click:Connect(function()
+local pos = workspace[LP].Head.Position
+local A = CFrame.new (pos)
 
+
+local A_1 = "PlacedFirework_Green"
+local A_2 = A
+local A_3 = "Green Firework"
+local A_4 = game:GetService("Workspace").Ground
+local Event = game:GetService("Workspace").CommunicationRelays.House.PlaceLeisure
+Event:InvokeServer(A_1, A_2, A_3, A_4)
 end)
 
 FwR.MouseButton1Click:Connect(function()
+local pos = workspace[LP].Head.Position
+local A = CFrame.new (pos)
 
+
+local A_1 = "PlacedFirework_Red"
+local A_2 = A
+local A_3 = "Red Firework"
+local A_4 = game:GetService("Workspace").Ground
+local Event = game:GetService("Workspace").CommunicationRelays.House.PlaceLeisure
+Event:InvokeServer(A_1, A_2, A_3, A_4)
 end)
 
 FwB.MouseButton1Click:Connect(function()
 
-local pos = workspace[findPlr(Username)].Head.Position
+local pos = workspace[LP].Head.Position
 local A = CFrame.new (pos)
 
 
@@ -627,10 +666,32 @@ local A_3 = "Blue Firework"
 local A_4 = game:GetService("Workspace").Ground
 local Event = game:GetService("Workspace").CommunicationRelays.House.PlaceLeisure
 Event:InvokeServer(A_1, A_2, A_3, A_4)
+end)
 
+Rainbow.MouseButton1Click:Connect(function()
+if not RainbowB.Value == true then
+
+RainbowB.Value = true
+
+else
+	RainbowB.Value = false
+end
+while RainbowB.Value==true do
+local A_1 = game.Players.LocalPlayer.Character
+local A_2 = 
+{
+	[1] = math.random(0,1), 
+	[2] = math.random(0,1), 
+	[3] = math.random(0,1)
+}
+local Event = game:GetService("Workspace").CommunicationRelays.Character.ChangeSkinColor
+Event:FireServer(A_1, A_2)
+wait(0.2)
+end
 end)
 
 if not fail == false then
  local destroy = game.CoreGui.NicksGui
  destroy:Destroy()
 end
+
