@@ -22,7 +22,7 @@ if IsWhitelisted() then
     print("check 1 success")
 else
 fail = true
- print("check 1 failed")
+ print("check 1 failed: contact staff")
 end
 
 -- ID
@@ -33,7 +33,7 @@ if whitelistecheck[game:service('Players').LocalPlayer.UserId] then
 print("check 2 success")
 else
 fail = true
-print("check 2 failed")
+print("check 2 failed: No auth")
 end
 
 if not fail == true then
@@ -41,7 +41,7 @@ if player:IsFriendsWith(1410822572) then
 print("check 3 success")
 else
 fail = true
-print("check 3 failed")
+print("check 3 failed: Did you even buy?")
 
 end
 end
