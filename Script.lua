@@ -569,6 +569,8 @@ end)
 
 
 Troll.MouseButton1Click:Connect(function()
+local B = {"Really red","Really blue","Royal purple","Hot pink","Camo","Lime green","Toothpaste","Depp orange","Cyan","Alder","Really black","Plum","Lapis","Dark green"}
+local D = {"Really red","Really blue","Royal purple","Hot pink","Camo","Lime green","Toothpaste","Depp orange","Cyan","Alder","Really black","Plum","Lapis","Dark green"}
 local Username = game.CoreGui.NicksGui.TopFrame.TextBox.Text
 local target = findPlr(Username)
 local cframe = target.Character.Head
@@ -577,9 +579,11 @@ local A_1 =
 {
 	["SpawnLocation"] = cframe, 
 	["CurrentSpecs"] = 
-{
-	["Rims"] = "Schoolbus", 
-	["Frame"] = "Schoolbus"
+{ 
+	["Frame"] = "Schoolbus",
+	["PrimaryColor"] = B[math.random(1,#B)],
+    ["Rims"] = "6 Spoke Split",
+    ["RimColor"] = D[math.random(1,#D)]
 }
 }
 local Event = game:GetService("Workspace").CommunicationRelays.Car.SpawnCar
