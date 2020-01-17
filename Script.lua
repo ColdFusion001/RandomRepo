@@ -791,7 +791,6 @@ B.MouseButton1Click:Connect(function()
 end)
 end
 
-local bypass = game.Players.LocalPlayer.PlayerGui.Inventory.TradeMenu.TradeID.Value
 
 -- -84,-2.3000373840332,-80.999938964844,1,0,0
 
@@ -878,9 +877,9 @@ end
 	s.TextSize = 12
 	s.TextWrapped = true
 
-
 local thing3 = game.ReplicatedStorage.Furniture:FindFirstChild(s.Text)
 s.MouseButton1Click:Connect(function()
+local bypass = game.Players.LocalPlayer.PlayerGui.Inventory.TradeMenu.TradeID.Value
 game:GetService("Workspace").CommunicationRelays.Interclient.TradeUpdate:InvokeServer(bypass,thing3.Name,"Add",thing3.SelectedColor.Value)
 end)
 end
