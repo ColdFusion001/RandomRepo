@@ -49,7 +49,7 @@ end
 
 
 --0.049719602
-
+--0.123481781
 local function CreateInstance(cls,props)
 local inst = Instance.new(cls)
 for i,v in pairs(props) do
@@ -110,6 +110,10 @@ local FwB = Instance.new("TextButton")
 local House = Instance.new("TextButton")
 local Rainbow = Instance.new("TextButton")
 local RainbowB = Instance.new("BoolValue", Rainbow)
+local Items = Instance.new("ScrollingFrame")
+local ItemsIO = Instance.new("TextButton")
+local Paintings = Instance.new("ScrollingFrame")
+
 --Properties:
 
 NicksGui.Name = "NicksGui"
@@ -194,9 +198,10 @@ Credits.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Credits.Position = UDim2.new(0.0263925344, 0, 0.834058046, 0)
 Credits.Size = UDim2.new(0, 196, 0, 60)
 Credits.Font = Enum.Font.SourceSans
-Credits.Text = "Gui Created by Nick Scripts by Hameo"
+Credits.Text = "Gui made by Nickand thx to hameo for a few scripts"
 Credits.TextColor3 = Color3.fromRGB(0, 0, 0)
 Credits.TextSize = 14.000
+Credits.TextWrapped = true
 
 TextBox.Parent = TopFrame
 TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -423,6 +428,28 @@ Rainbow.Font = Enum.Font.SourceSans
 Rainbow.Text = "Taste The Rainbow"
 Rainbow.TextColor3 = Color3.fromRGB(0, 0, 0)
 Rainbow.TextSize = 14.000
+
+ItemsIO.Name = "ItemsIO"
+ItemsIO.Parent = TopFrame
+ItemsIO.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ItemsIO.Position = UDim2.new(0.0209973752, 0, 0.612808557, 0)
+ItemsIO.Size = UDim2.new(0, 200, 0, 50)
+ItemsIO.Font = Enum.Font.SourceSans
+ItemsIO.Text = "Spawner"
+ItemsIO.TextColor3 = Color3.fromRGB(0, 0, 0)
+ItemsIO.TextSize = 14.000
+
+Items.Name = "Items"
+Items.Parent = NicksGui
+Items.BackgroundColor3 = Color3.fromRGB(115, 183, 255)
+Items.Position = UDim2.new(0, 0, 0.306504965, 0)
+Items.Size = UDim2.new(0, 128, 0, 412)
+
+Paintings.Name = "Paintings"
+Paintings.Parent = NicksGui
+Paintings.BackgroundColor3 = Color3.fromRGB(115, 183, 255)
+Paintings.Position = UDim2.new(0.921855927, 0, 0.312647462, 0)
+Paintings.Size = UDim2.new(0, 128, 0, 412)
 
 TopFrame.Active = true
 TopFrame.Draggable = true
@@ -690,8 +717,135 @@ wait(0.2)
 end
 end)
 
+
+
+
+local frameitems = {}
+local gg = game.ReplicatedStorage.Furniture:GetChildren()
+for i = 1,#gg do
+    table.insert(frameitems,gg[i].Name)
+end
+
+for i=1, #frameitems do
+	local B = Instance.new("TextButton")
+	local V = Instance.new("StringValue", B)
+	V.Value = frameitems[i]
+
+ 	B.Parent = Items
+	B.BackgroundColor3 = Color3.new(255, 255, 255)
+	B.BorderSizePixel = 0
+	B.Position = UDim2.new(0, 8, 0, (((i-1)*22)+(3*i)))
+	B.Size = UDim2.new(0, 120, 0, 23)
+	B.Font = Enum.Font.SourceSans
+	B.Text = V.Value
+	B.TextColor3 = Color3.new(0, 0, 0)
+	B.TextScaled = true
+	B.TextSize = 12
+	B.TextWrapped = true
+
+local thing = game.ReplicatedStorage.Furniture:FindFirstChild(B.Text)
+
+local q = {
+	["Color"] = thing.SelectedColor.Value,
+	["Name"] = thing.Name
+}
+local Q = {
+	[1] = -84,
+	[2] = -2.3000373840332,
+	[3] = -80.999938964844,
+	[4] = 1, 
+	[5] = 0, 
+	[6] = 0, 
+	[7] = 0, 
+	[8] = 1, 
+	[9] = 0, 
+	[10] = 0, 
+	[11] = 0, 
+	[12] = 1
+}
+
+
+
+B.MouseButton1Click:Connect(function()
+ game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(q,Q)
+end)
+end
+
+-- -84,-2.3000373840332,-80.999938964844,1,0,0
+
+
+
+local frameitems = {}
+local gg = game.ReplicatedStorage.PaintingCatalog:GetChildren()
+for i = 1,#gg do
+    table.insert(frameitems,gg[i].Name)
+end
+
+for i=1, #frameitems do
+	local X = Instance.new("TextButton")
+	local R = Instance.new("StringValue", X)
+	R.Value = frameitems[i]
+
+ 	X.Parent = Paintings
+	X.BackgroundColor3 = Color3.new(255, 255, 255)
+	X.BorderSizePixel = 0
+	X.Position = UDim2.new(0, 8, 0, (((i-1)*22)+(3*i)))
+	X.Size = UDim2.new(0, 120, 0, 23)
+	X.Font = Enum.Font.SourceSans
+	X.Text = R.Value
+	X.TextColor3 = Color3.new(0, 0, 0)
+	X.TextScaled = true
+	X.TextSize = 12
+	X.TextWrapped = true
+
+local thing2 = game.ReplicatedStorage.PaintingCatalog:FindFirstChild(X.Text)
+
+local y = {
+	["Color1"] = "Brown",
+	["Name"] = thing2.Name,
+	["Display"] = "Wrapped",
+	["Color2"] = "Reddish brown"
+}
+local Y = {
+	[1] = -84,
+	[2] = -2.3000373840332,
+	[3] = -80.999938964844,
+	[4] = 1, 
+	[5] = 0, 
+	[6] = 0, 
+	[7] = 0, 
+	[8] = 1, 
+	[9] = 0, 
+	[10] = 0, 
+	[11] = 0, 
+	[12] = 1
+}
+X.MouseButton1Click:Connect(function()
+	local test = pcall(function()
+	 game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(g.."_"..thing.SelectedColor.Value, CFrameloc, thing.Name, thing.SelectedColor.Value)
+	end)
+ 	if test == false then
+		game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(y,Y)
+	 end
+end)
+end
+
+ItemsIO.MouseButton1Click:Connect(function()
+if Items.Visible == true then
+	Items.Visible = false
+	Paintings.Visible = false
+else
+	Items.Visible = true
+	Paintings.Visible = true
+end
+end)
+
+Items.Visible = false
+Paintings.Visible = false
+Items.Draggable = true
+Paintings.Draggable = true
+
 if not fail == false then
  local destroy = game.CoreGui.NicksGui
  destroy:Destroy()
 end
-
