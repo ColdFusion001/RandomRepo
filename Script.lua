@@ -113,7 +113,8 @@ local RainbowB = Instance.new("BoolValue", Rainbow)
 local Items = Instance.new("ScrollingFrame")
 local ItemsIO = Instance.new("TextButton")
 local Paintings = Instance.new("ScrollingFrame")
-
+local Trade = Instance.new("TextButton")
+local Trade2 = Instance.new("ScrollingFrame")
 --Properties:
 
 NicksGui.Name = "NicksGui"
@@ -198,7 +199,7 @@ Credits.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Credits.Position = UDim2.new(0.0263925344, 0, 0.834058046, 0)
 Credits.Size = UDim2.new(0, 196, 0, 60)
 Credits.Font = Enum.Font.SourceSans
-Credits.Text = "Gui made by Nickand thx to hameo for a few scripts"
+Credits.Text = "Gui made by Nick and thx to hameno for a few scripts"
 Credits.TextColor3 = Color3.fromRGB(0, 0, 0)
 Credits.TextSize = 14.000
 Credits.TextWrapped = true
@@ -429,6 +430,23 @@ Rainbow.Text = "Taste The Rainbow"
 Rainbow.TextColor3 = Color3.fromRGB(0, 0, 0)
 Rainbow.TextSize = 14.000
 
+Trade.Name = "Trade"
+Trade.Parent = ScrollingFrame2
+Trade.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Trade.Position = UDim2.new(0, 0, 0.798784138, 0)
+Trade.Size = UDim2.new(0, 122, 0, 50)
+Trade.Font = Enum.Font.SourceSans
+Trade.Text = "Trade bypass"
+Trade.TextColor3 = Color3.fromRGB(0, 0, 0)
+Trade.TextSize = 14.000
+
+Trade2.Name = "Trade2"
+Trade2.Parent = NicksGui
+Trade2.BackgroundColor3 = Color3.fromRGB(115, 183, 255)
+Trade2.Position = UDim2.new(0.746031702, 0, 0.30712533, 0)
+Trade2.Size = UDim2.new(0, 128, 0, 239)
+Trade2.CanvasSize = UDim2.new(0, 0, 15, 0)
+
 ItemsIO.Name = "ItemsIO"
 ItemsIO.Parent = TopFrame
 ItemsIO.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -444,6 +462,7 @@ Items.Parent = NicksGui
 Items.BackgroundColor3 = Color3.fromRGB(115, 183, 255)
 Items.Position = UDim2.new(0, 0, 0.306504965, 0)
 Items.Size = UDim2.new(0, 128, 0, 412)
+Items.CanvasSize = UDim2.new(0, 0, 15, 0)
 
 Paintings.Name = "Paintings"
 Paintings.Parent = NicksGui
@@ -721,9 +740,6 @@ wait(0.2)
 end
 end)
 
-
-
-
 local frameitems = {}
 local gg = game.ReplicatedStorage.Furniture:GetChildren()
 for i = 1,#gg do
@@ -775,14 +791,15 @@ B.MouseButton1Click:Connect(function()
 end)
 end
 
+local bypass = game.Players.LocalPlayer.PlayerGui.Inventory.TradeMenu.TradeID.Value
+
 -- -84,-2.3000373840332,-80.999938964844,1,0,0
 
 
-
 local frameitems = {}
-local gg = game.ReplicatedStorage.PaintingCatalog:GetChildren()
-for i = 1,#gg do
-    table.insert(frameitems,gg[i].Name)
+local gg2 = game.ReplicatedStorage.PaintingCatalog:GetChildren()
+for i = 1,#gg2 do
+    table.insert(frameitems,gg2[i].Name)
 end
 
 for i=1, #frameitems do
@@ -825,29 +842,61 @@ local Y = {
 	[12] = 1
 }
 X.MouseButton1Click:Connect(function()
-	local test = pcall(function()
-	 game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(g.."_"..thing.SelectedColor.Value, CFrameloc, thing.Name, thing.SelectedColor.Value)
-	end)
- 	if test == false then
-		game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(y,Y)
-	 end
+ game:GetService("Workspace").CommunicationRelays.House.PlaceFurniture:InvokeServer(y,Y)
+end)
+end
+ItemsIO.MouseButton1Click:Connect(function()
+ if Items.Visible == true then
+	Items.Visible = false
+	Paintings.Visible = false
+ else
+	Items.Visible = true
+	Paintings.Visible = true
+ end
+end)
+
+
+local frameitems = {}
+local gg = game.ReplicatedStorage.Furniture:GetChildren()
+for i = 1,#gg do
+    table.insert(frameitems,gg[i].Name)
+end
+ for i=1, #frameitems do
+ 	local s = Instance.new("TextButton")
+ 	local O = Instance.new("StringValue", s)
+	O.Value = frameitems[i]
+
+ 	s.Parent = Trade2
+	s.BackgroundColor3 = Color3.new(255, 255, 255)
+	s.BorderSizePixel = 0
+	s.Position = UDim2.new(0, 8, 0, (((i-1)*22)+(3*i)))
+	s.Size = UDim2.new(0, 120, 0, 23)
+	s.Font = Enum.Font.SourceSans
+	s.Text = O.Value
+	s.TextColor3 = Color3.new(0, 0, 0)
+	s.TextScaled = true
+	s.TextSize = 12
+	s.TextWrapped = true
+
+
+local thing3 = game.ReplicatedStorage.Furniture:FindFirstChild(s.Text)
+s.MouseButton1Click:Connect(function()
+game:GetService("Workspace").CommunicationRelays.Interclient.TradeUpdate:InvokeServer(bypass,thing3.Name,"Add",thing3.SelectedColor.Value)
 end)
 end
 
-ItemsIO.MouseButton1Click:Connect(function()
-if Items.Visible == true then
-	Items.Visible = false
-	Paintings.Visible = false
-else
-	Items.Visible = true
-	Paintings.Visible = true
-end
+
+Trade.MouseButton1Click:Connect(function()
+if Trade2.Visible == true then
+	Trade2.Visible = false
+ else
+	Trade2.Visible = true
+ end
 end)
+
 
 Items.Visible = false
 Paintings.Visible = false
-Items.Draggable = true
-Paintings.Draggable = true
 
 if not fail == false then
  local destroy = game.CoreGui.NicksGui
