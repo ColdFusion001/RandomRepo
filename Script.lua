@@ -751,7 +751,7 @@ local A_2 =
 }
 local Event = game:GetService("Workspace").CommunicationRelays.Character.ChangeSkinColor
 Event:FireServer(A_1, A_2)
-wait(0.2)
+wait(0.00001)
 end
 end)
 
