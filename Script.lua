@@ -742,16 +742,17 @@ else
 	RainbowB.Value = false
 end
 while RainbowB.Value==true do
+wait()
 local A_1 = game.Players.LocalPlayer.Character
 local A_2 = 
 {
-	[1] = math.random(0,1), 
-	[2] = math.random(0,1), 
-	[3] = math.random(0,1)
+	[1] = math.random(255), 
+	[2] = math.random(255), 
+	[3] = math.random(255)
 }
+
 local Event = game:GetService("Workspace").CommunicationRelays.Character.ChangeSkinColor
 Event:FireServer(A_1, A_2)
-wait(0.00001)
 end
 end)
 
