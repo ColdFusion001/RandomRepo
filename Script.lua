@@ -1,6 +1,5 @@
 local player = game.Players.LocalPlayer
 local fail = true
-local LP = game.Players.LocalPlayer.Name
 
 loadstring(game:HttpGet("https://pastebin.com/raw/KqBXVKek", true))()
 
@@ -496,7 +495,7 @@ game.Players.LocalPlayer.Character.NamePlate.AuxFrame.PlayerName:Destroy()
 end)
 
 Legs.MouseButton1Click:Connect(function()
-game.Players.dmLocalPlayer.Character.UpperTorso.Waist:Destroy()
+game.Players.LocalPlayer.Character.UpperTorso.Waist:Destroy()
 end)
 
 Age.MouseButton1Click:Connect(function()
