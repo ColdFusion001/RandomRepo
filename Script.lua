@@ -72,7 +72,6 @@ function findPlr(name)
 	end
 end
 
-local LocalPlayer = game.Players.LocalPlayer
 
 -- Instances:
 
@@ -681,7 +680,7 @@ if TrailB.Value then
 end)
 
 FwY.MouseButton1Click:Connect(function()
-local pos = workspace[LP].Head.Position
+local pos = workspace[player.Name].Head.Position
 local A = CFrame.new (pos)
 
 
@@ -694,7 +693,7 @@ Event:InvokeServer(A_1, A_2, A_3, A_4)
 end)
 
 FwG.MouseButton1Click:Connect(function()
-local pos = workspace[LP].Head.Position
+local pos = workspace[player.Name].Head.Position
 local A = CFrame.new (pos)
 
 
@@ -707,7 +706,7 @@ Event:InvokeServer(A_1, A_2, A_3, A_4)
 end)
 
 FwR.MouseButton1Click:Connect(function()
-local pos = workspace[LP].Head.Position
+local pos = workspace[player.Name].Head.Position
 local A = CFrame.new (pos)
 
 
@@ -721,7 +720,7 @@ end)
 
 FwB.MouseButton1Click:Connect(function()
 
-local pos = workspace[LP].Head.Position
+local pos = workspace[player.Name].Head.Position
 local A = CFrame.new (pos)
 
 
@@ -742,17 +741,16 @@ else
 	RainbowB.Value = false
 end
 while RainbowB.Value==true do
-wait()
 local A_1 = game.Players.LocalPlayer.Character
 local A_2 = 
 {
-	[1] = math.random(255), 
-	[2] = math.random(255), 
-	[3] = math.random(255)
+	[1] = math.random(0,1), 
+	[2] = math.random(0,1), 
+	[3] = math.random(0,1)
 }
-
 local Event = game:GetService("Workspace").CommunicationRelays.Character.ChangeSkinColor
 Event:FireServer(A_1, A_2)
+wait(0.00001)
 end
 end)
 
